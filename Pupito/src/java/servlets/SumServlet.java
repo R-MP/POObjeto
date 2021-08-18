@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Okami
  */
-@WebServlet(name = "MultiplicationTableServlet", urlPatterns = {"/multiplication-table.html"})
-public class MultiplicationTableServlet extends HttpServlet {
+@WebServlet(name = "SumServlet", urlPatterns = {"/sum.html"})
+public class SumServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +33,6 @@ public class MultiplicationTableServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,28 +42,15 @@ public class MultiplicationTableServlet extends HttpServlet {
             out.println("<h4><a href='index.html'>Voltar</a></h4>");
             out.println("<h1>JavaEE</h1>");
             out.println("<h2>Servlets</h2>");
-            out.println("Links rápidos: ");
-            for(int i=1; i<=20; i++){
-                out.println("<a href='?n="+i+"'>"+i+"</a> | ");
-            }
-            out.println("<h3>Tabuada</h3>");
-            int n = 2;
+            out.println("<h3>Soma</h3>");
+            double n1, n2 = 0;
             try{
-                n = Integer.parseInt(request.getParameter("n"));
-            }catch(Exception ex){
-                out.println("<p style='color:red'>Erro ao ler parâmetro: "+ex.getMessage()+"<p>");
+                n1 = Double.parseDouble(request.getParameter("n1"));
+                n2 = Double.parseDouble(request.getParameter("n2"));
+                out.println("<h4>"+n1+" + "+n2+" = "+(n1+n2)+"</h4>");
+            }catch(NumberFormatException ex){
+                out.println("<p style='color:red'>Erro ao ler parâmetros: "+ex.getMessage()+"<p>");
             }
-            out.println("<table>");
-            for(int i=1; i<=10; i++){
-                out.println("<tr>");
-                out.println("<th>"+n+"<th>");
-                out.println("<th>x<th>");
-                out.println("<th>"+i+"<th>");
-                out.println("<th>=<th>");
-                out.println("<th>"+(n*i)+"<th>");
-                out.println("</tr>");
-            }
-            out.println("</table>");
             out.println("</body>");
             out.println("</html>");
         }

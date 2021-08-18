@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Okami
  */
-@WebServlet(name = "MultiplicationTableServlet", urlPatterns = {"/multiplication-table.html"})
-public class MultiplicationTableServlet extends HttpServlet {
+@WebServlet(name = "RandomServlet", urlPatterns = {"/random.html"})
+public class RandomServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,38 +33,20 @@ public class MultiplicationTableServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>MathServlet</title>");            
+            out.println("<title>Servlet DateTimeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h4><a href='index.html'>Voltar</a></h4>");
-            out.println("<h1>JavaEE</h1>");
+            out.println("<h1>Java EE</h1>");
             out.println("<h2>Servlets</h2>");
-            out.println("Links rápidos: ");
-            for(int i=1; i<=20; i++){
-                out.println("<a href='?n="+i+"'>"+i+"</a> | ");
+            out.println("<h3>Numero Aleatorio</h3>");
+            for(int i = 1; i <= 10; i++){
+                int n = ((int)(Math.random() * 100));
+                out.println("<p>"+ n +"</p>");
             }
-            out.println("<h3>Tabuada</h3>");
-            int n = 2;
-            try{
-                n = Integer.parseInt(request.getParameter("n"));
-            }catch(Exception ex){
-                out.println("<p style='color:red'>Erro ao ler parâmetro: "+ex.getMessage()+"<p>");
-            }
-            out.println("<table>");
-            for(int i=1; i<=10; i++){
-                out.println("<tr>");
-                out.println("<th>"+n+"<th>");
-                out.println("<th>x<th>");
-                out.println("<th>"+i+"<th>");
-                out.println("<th>=<th>");
-                out.println("<th>"+(n*i)+"<th>");
-                out.println("</tr>");
-            }
-            out.println("</table>");
+            out.println("<h4><a href='index.html'>Voltar</a></h4>");
             out.println("</body>");
             out.println("</html>");
         }

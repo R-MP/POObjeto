@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Okami
  */
-@WebServlet(name = "MultiplicationTableServlet", urlPatterns = {"/multiplication-table.html"})
-public class MultiplicationTableServlet extends HttpServlet {
+@WebServlet(name = "Greetings", urlPatterns = {"/greeting/*"})
+public class Greetings extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,38 +34,29 @@ public class MultiplicationTableServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>MathServlet</title>");            
+            out.println("<title>Servlet DateTimeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h4><a href='index.html'>Voltar</a></h4>");
             out.println("<h1>JavaEE</h1>");
             out.println("<h2>Servlets</h2>");
-            out.println("Links rápidos: ");
-            for(int i=1; i<=20; i++){
-                out.println("<a href='?n="+i+"'>"+i+"</a> | ");
+            out.println("<h3>Recurso requisitado</h3>");
+            out.println("<p>"+request.getRequestURI()+"</p>");
+            out.println("<h3>Saudação</h3>");
+            Calendar c = Calendar.getInstance();
+            int h = c.get(Calendar.HOUR_OF_DAY);
+            if(h<6){
+                out.println("<p>Vai Dormir!!!</p>");
+            }else if(h<12){
+                out.println("<p>Bom Dia!</p>");
+            }else if(h<18){
+                out.println("<p>Boa Tarde!</p>");
+            }else{
+                out.println("<p>Boa Noite!</p>");
             }
-            out.println("<h3>Tabuada</h3>");
-            int n = 2;
-            try{
-                n = Integer.parseInt(request.getParameter("n"));
-            }catch(Exception ex){
-                out.println("<p style='color:red'>Erro ao ler parâmetro: "+ex.getMessage()+"<p>");
-            }
-            out.println("<table>");
-            for(int i=1; i<=10; i++){
-                out.println("<tr>");
-                out.println("<th>"+n+"<th>");
-                out.println("<th>x<th>");
-                out.println("<th>"+i+"<th>");
-                out.println("<th>=<th>");
-                out.println("<th>"+(n*i)+"<th>");
-                out.println("</tr>");
-            }
-            out.println("</table>");
+            out.println("<h4><a href='../index.html'>Voltar</a></h4>");
             out.println("</body>");
             out.println("</html>");
         }

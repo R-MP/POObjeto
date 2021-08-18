@@ -42,7 +42,7 @@ public class Renan_Servlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Renan Miguel Pascon</h1>");
             out.println("<h2>RA:1290482012033</h2>");
-            out.println("<h2><a href='https://youtu.be/dQw4w9WgXcQ'>GitHub</a></h2>");
+            out.println("<h2><a href='https://github.com/R-MP/POObjeto'>GitHub</a></h2>");
             out.println("<br>");
             out.println("<h3><a href='index.html'>Voltar</a></h3>");
             out.println("</body>");

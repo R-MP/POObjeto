@@ -39,22 +39,22 @@ public class MathServlet extends HttpServlet {
             out.println("<title>MathServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-
+            out.println("<h4><a href='index.html'>Voltar</a></h4>");
             out.println("<h1>Operações Matematicas</h1>");
             out.println("<form action='math-servlet.html'>"+"Continue as operações colocando os números aqui:<br>\n"+"<input type=\"number\" name=\"x\"/>\n"+"e "+"<input type=\"number\" name=\"y\"/>\n"+"<input type=\"submit\" value=\"Calcular Tudo\"/>\n"+"</form>");
             int x = 0;
             int y = 0;
             try{
                 x = Integer.parseInt(request.getParameter("x"));
-            }catch(NumberFormatException ex){}
-            try{
                 y = Integer.parseInt(request.getParameter("y"));
-            }catch(NumberFormatException ex){}
+            }catch(NumberFormatException ex){
+            out.println("<h5><p style='color:blue'>Favor informar o primeiro e o segundo número</p></h3>");
+            }
+            
             out.println("<h4>Resultado da adição: "+(x+y)+"  "+"("+ x +" + "+ y +")"+"</h4>");
             out.println("<h4>Resultado da subtração: "+(x-y)+"  "+"("+ x +" - "+ y +")"+"</h4>");
             out.println("<h4>Resultado da multiplicação: "+(x*y)+"  "+"("+ x +" * "+ y +")"+"</h4>");
             out.println("<h4>Resultado da divisão: "+(x/y)+"  "+"("+ x +" / "+ y +")"+"</h4>");
-            out.println("<h4><a href='index.html'>Voltar</a></h4>");
             out.println("</body>");
             out.println("</html>");
         }

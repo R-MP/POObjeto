@@ -49,6 +49,7 @@ public class JurosSimples extends HttpServlet {
             out.println("<input type='number' name='juros' placeholder='Juros'>");
             out.println("<input type='number' name='meses' placeholder='Meses'>");
             out.println("<input type='submit' name='Calcular'>");
+            out.println("</form");
             double x = 0, y = 0;
             int z = 0;
             try{
@@ -64,12 +65,6 @@ public class JurosSimples extends HttpServlet {
                 out.println("<h3>O valor total com o juro simples acumulado em "+z+" meses será de: </h3>");
             else
                 out.println("<h3>O valor total com o juro simples acumulado em "+z+" mês será de: </h3>");
-            /*String tam = "#.##";
-            DecimalFormatSymbols loc = new DecimalFormatSymbols();
-            DecimalFormat df = new DecimalFormat(tam, loc);
-            df.setGroupingSize(2);
-            String vf = df.format(vl_fut);
-            */
             out.println("<hr/><h2>R$ "+new DecimalFormat( "#,###,###,##0.00" ).format(vl_fut)+"</h2>");
             out.println("</body>");
             out.println("</html>");

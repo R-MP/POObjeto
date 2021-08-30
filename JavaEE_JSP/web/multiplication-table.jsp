@@ -28,7 +28,7 @@
         <h3>Tabuada</h3>
         <%if(errorMessage==null){%>
         <table>
-          <%for(int i=1;i<=n;i++){%>  
+          <%for(int i=1;i<=10;i++){%>  
           <tr>
              <td><%= n %></td> 
              <td> x </td>

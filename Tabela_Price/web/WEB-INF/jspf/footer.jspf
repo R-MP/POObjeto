@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%@include file="bootstrap.jspf" %>
+<hr/>
+<div style="text-align: center">
+    FATEC Praia Grande
+</div>
+<div style="text-align: center">
+    <u><small>Prof. Ricardo</small><u/>
+</div>

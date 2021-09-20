@@ -1,6 +1,6 @@
 <%-- 
     Document   : tabela-price
-    Created on : 13 de set de 2021, 16:01:59
+    Created on : 19 de set de 2021, 23:33:52
     Author     : Okami
 --%>
 
@@ -9,8 +9,8 @@
 <%
     String holder = "-";
     String errorMessage = "";
-    double v = 0; 
-    double juros = 0;
+    double v = 0.00; 
+    double juros = 0.00;
     int t = 0;
     
           try{
@@ -22,14 +22,14 @@
               
     double j = juros/100;  
     double var_juros = 0;
-    double mort = 0;
+    double p = 0;
+    double mort = Math.round((v/t)*100.0)/100.0;
     
-    double pmt = Math.round((v*j)/(1-(1/(Math.pow((1+j),t))))*100.0)/100.0;
     %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tabela Price</title>
+        <title>Tabela SAC</title>
         <style>
             table {border-collapse: collapse; width: 100%; table-layout: fixed;}
             td, th{border: 2px solid black; text-align: left; padding: 8px;}
@@ -38,8 +38,8 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Tabela Price</h1><br>
-        <form action="tabela-price.jsp">
+        <h1>Tabela SAC</h1><br>
+        <form action="tabela-sac.jsp">
             <input type="number" name="vi" placeholder="Valor do emprestimo">
             <input type="number" name="t" placeholder="Num. de parcelas">
             <input type="number" name="j" placeholder="Juros">
@@ -64,23 +64,23 @@
                 <th>-</th>
             </tr>
       <%for(int i=1; i<=t; i++){
-        var_juros = Math.round((v * j)*100.0)/100.0;
-        v = Math.round((v - pmt + var_juros)*100.0)/100.0;
-        mort = Math.round((pmt - var_juros)*100.0)/100.0;
+        var_juros = Math.round((v*j)*100.0)/100.0;
+        p = Math.round((mort + var_juros)*100.0)/100.0;
+        v = Math.round((v - mort)*100.0)/100.0;
         if(i == t){   
         %>
             <tr>
                 <th><%=i%></th>
                 <th>00.00</th>
-                <th><%=pmt%></th>
+                <th><%=Math.round((p+v)*100.0)/100.0%></th>
                 <th><%=var_juros%></th>
-                <th><%=Math.round((mort+v)*100.0)/100.0%></th>
+                <th><%=mort%></th>
             </tr>
         <%}else{%>
             <tr>
                 <th><%=i%></th>
                 <th><%=v%></th>
-                <th><%=pmt%></th>
+                <th><%=p%></th>
                 <th><%=var_juros%></th>
                 <th><%=mort%></th>
             </tr>

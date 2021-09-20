@@ -2,5 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <a href="<%=request.getContextPath()%>/index.jsp">Inicio</a>
 /
-<a href="<%=request.getContextPath()%>/page.jsp">Pagina 01</a>
+<a href="<%=request.getContextPath()%>/page.jsp">Tabela Price</a>
+/
+<a href="https://github.com/R-MP/POObjeto/tree/main/Tabela_Price">GitHub<a/>
 <hr/>

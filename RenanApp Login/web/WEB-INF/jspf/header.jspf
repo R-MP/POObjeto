@@ -1,0 +1,49 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+  if(request.getParameter("auth-login")!=null){
+     String user = request.getParameter("auth-user");
+     session.setAttribute("auth-user",user);
+     response.sendRedirect(request.getRequestURI());
+    }else if(request.getParameter("Logout")!=null){
+     session.removeAttribute("auth-user");
+     response.sendRedirect(request.getRequestURI());
+    }
+  String username = (String) session.getAttribute("auth-user");  
+%>
+<style>
+    .header{
+        padding:20px;
+        text-align: justify;
+        background: #1abc9c;
+        color: white;
+        font-size: 20px;
+    }
+    .login{
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        height: 2px;
+        font-size: 20px
+    }
+</style>
+<div class="header">
+     Renan App /
+     <a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> /
+     <a href="<%=request.getContextPath()%>/about.jsp">About Me</a> 
+     <%if(username==null){%>
+     <div class="login">
+            <a>Entrar na sua conta:</a>
+            <input type='text' placeholder="Usuario" name="auth-user">
+            <input type='text' placeholder="Senha" name="auth-pass">
+            <input type='submit' name="auth-login" value="Login">
+     </div>
+        <%}else{%>
+     <div class="login">Logado como <%=username%>
+         <input type='submit' name="Logout" value="Logout">
+     </div>
+        <%}%>
+</div>
+
+
+

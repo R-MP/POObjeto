@@ -2,14 +2,14 @@
 <%@ page pageEncoding="UTF-8" %>
 <%
   if(request.getParameter("auth-login")!=null){
-     String user = request.getParameter("auth-user");
-     session.setAttribute("auth-user",user);
+     String userName = request.getParameter("auth-username");
+     session.setAttribute("auth-username",userName);
      response.sendRedirect(request.getRequestURI());
-    }else if(request.getParameter("Logout")!=null){
-     session.removeAttribute("auth-user");
+    }else if(request.getParameter("auth-logout")!=null){
+     session.removeAttribute("auth-username");
      response.sendRedirect(request.getRequestURI());
     }
-  String username = (String) session.getAttribute("auth-user");  
+  String authUser = (String) session.getAttribute("auth-username");  
 %>
 <style>
     .header{
@@ -31,17 +31,21 @@
      Renan App /
      <a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> /
      <a href="<%=request.getContextPath()%>/about.jsp">About Me</a> 
-     <%if(username==null){%>
+     <%if(authUser==null){%>
      <div class="login">
+         <form method="post">
             <a>Entrar na sua conta:</a>
-            <input type='text' placeholder="Usuario" name="auth-user">
-            <input type='text' placeholder="Senha" name="auth-pass">
+            <input type='text' placeholder="Usuario" name="auth-username" required>
+            <input type='text' placeholder="Senha" name="auth-pass" required>
             <input type='submit' name="auth-login" value="Login">
+         </form>
      </div>
         <%}else{%>
-     <div class="login">Logado como <%=username%>
-         <input type='submit' name="Logout" value="Logout">
+        <form method="post">
+     <div class="login">Logado como <%=authUser%>
+         <input type='submit' name="auth-logout" value="Logout">
      </div>
+        </form>
         <%}%>
 </div>
 

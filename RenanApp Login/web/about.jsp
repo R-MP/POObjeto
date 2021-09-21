@@ -13,16 +13,17 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf"%>
-        <%if(username==null){%>
-        <h3><p style="color:blueviolet">  Você não possui permissão de acesso para ver este conteúdo, realize o login para obter permissão</p></h3>
+        <%if(authUser==null){%>
+        <h3><p style="color:red">  Você não possui permissão de acesso para ver este conteúdo, realize o login para obter permissão</p></h3>
         <%}else{%>
         <h1>Renan Miguel Pascon</h1>
         <h2>RA:1290482012033</h2>
         <br>
         <h2><a href='https://github.com/R-MP/POObjeto'>Meu GitHub<a/></h2>
-        <h2><a href='https://github.com/R-MP/POObjeto'>GitHub desse projeto<a/></h2>
-        <%}%>
+        <h2><a href='https://github.com/R-MP/POObjeto/tree/main/RenanApp%20Login'>GitHub desse projeto<a/></h2>
         <br>
         <h4><a href='index.jsp'>Voltar<a/><h4/>
+        <%}%>
+        
     </body>
 </html>

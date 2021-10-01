@@ -1,0 +1,66 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page import="java.util.Set"%>
+<%@ page import="java.util.LinkedHashSet"%>
+<%@ page import="java.util.Random"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page pageEncoding="UTF-8" %>
+<%  Random rand = new Random();
+    ArrayList<String> duplicate = new ArrayList<>();
+    
+    if(request.getParameter("login")!=null){
+    String user = request.getParameter("user");
+    session.setAttribute("user", user);
+    
+    if(application.getAttribute("online_list")==null){
+    ArrayList <String> lista_nome = new ArrayList<>();
+    lista_nome.add((String)session.getAttribute("user"));
+    application.setAttribute("online_list",lista_nome);
+    
+    }else{
+    ArrayList <String> lista_nome = (ArrayList) application.getAttribute("online_list");
+    lista_nome.add((String)session.getAttribute("user"));}
+    
+    if(session.getAttribute("nums")==null){
+    Set<Integer> num_megasena = new LinkedHashSet<>();
+    while(num_megasena.size()<6){
+    int random = rand.nextInt(60);
+    if(!num_megasena.contains(random)){
+    num_megasena.add(random);}}}
+    }else if(request.getParameter("logout")!=null){
+    int session_id = 0;
+    
+    ArrayList <String> lista_nome = (ArrayList) application.getAttribute("online_list");
+    for(int i=0;i<lista_nome.size();i++){
+    if(lista_nome.get(i).equals(session.getAttribute("user"))){
+    session_id = i;
+    }};
+    lista_nome.remove(session_id);
+    application.setAttribute("online_list",lista_nome);
+    session.removeAttribute("user");
+    }
+    
+    String username = (String) session.getAttribute("user");
+    ArrayList <String> lista_nome = (ArrayList) application.getAttribute("online_list");
+    
+    for(String i : lista_nome){
+    if(!duplicate.contains(i)){
+           duplicate.add(i);}};
+    application.setAttribute("online_list",duplicate);
+%>
+<a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> /
+<a href="<%=request.getContextPath()%>/renan.jsp">About Me</a>
+<%if(username==null){%>
+<form>
+    <input type='text' name='user' required>
+    <input type='submit' name='login' value='Login'>
+</form>
+<%}else{%>
+
+<form>
+    <div>Logado como <%=username%>
+    <input type='submit' name='logout' value='Logout'>
+    </div>
+</form>
+
+<%}%>
+<hr/>

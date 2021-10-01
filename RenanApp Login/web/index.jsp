@@ -9,8 +9,6 @@
 <%
   Random random = new Random();
   
-  int megasena[] = new int[6];
-  
     if(session.getAttribute("num1")==null){
      session.setAttribute("num1", random.nextInt(100));}
      int num1 = (int) session.getAttribute("num1");

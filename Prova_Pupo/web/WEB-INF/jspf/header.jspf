@@ -1,0 +1,66 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+    ArrayList <String> lista_on = new ArrayList<>();
+    ArrayList <String> ant_dupe = new ArrayList<>();
+   
+  
+  if(application.getAttribute("online_list")==null){
+    application.setAttribute("online_list",lista_on);
+    }
+  
+  
+  
+  
+  if(request.getParameter("login")!=null){
+    String user = request.getParameter("usuario");
+    session.setAttribute("user",user);
+    lista_on = (ArrayList) application.getAttribute("online_list");
+    lista_on.add((String)session.getAttribute("user"));
+    application.setAttribute("online_list",lista_on);
+    
+    
+    }else if(request.getParameter("logout")!=null){
+    lista_on = (ArrayList) application.getAttribute("online_list");
+    for(int i =0; i < lista_on.size();i++){
+    if(lista_on.get(i).equals(session.getAttribute("user"))){
+    lista_on.remove(i);}}
+    session.removeAttribute("user");
+    application.setAttribute("online_list",lista_on);
+    
+    
+    }
+
+
+    
+    for( String i : lista_on){
+    if(!ant_dupe.contains(i)){
+    ant_dupe.add(i);}
+    }
+    application.setAttribute("online_list",ant_dupe);
+    lista_on = (ArrayList) application.getAttribute("online_list");
+    application.setAttribute("online_list", lista_on);
+    
+    
+    String username = (String) session.getAttribute("user");
+
+
+%>
+
+<a href=""><a/>
+<a href=""><a/>
+<a href=""><a/>
+<%if(username==null){%>
+<form>
+    <input type="text" name="usuario" required>
+    <input type="submit" name="login" value="Login">
+</form>
+<%}else{%>
+<form>
+    Logado como <%=username%>
+    <input type="submit" name="logout" value="Logout">
+</form>
+    <%}%>
+<hr/>
+

@@ -1,0 +1,71 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="java.util.Collections"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+    ArrayList <String> nomes_lista = new ArrayList<>();
+    ArrayList <String> ant_dupe = new ArrayList<>();
+    ArrayList <Integer> megasena = new ArrayList<>();
+    
+    
+    if(application.getAttribute("online")==null){
+    application.setAttribute("online",nomes_lista);    
+    }
+    
+  
+    if(request.getParameter("login")!=null){
+    String user = request.getParameter("usuario");
+    session.setAttribute("user", user);
+    nomes_lista = (ArrayList)application.getAttribute("online");
+    nomes_lista.add((String)session.getAttribute("user"));
+    nomes_lista = (ArrayList)application.getAttribute("online");
+    
+    if(session.getAttribute("nums")==null){
+    for(int i = 1; i<=60; i++){
+    megasena.add(i);}
+    Collections.shuffle(megasena);
+    session.setAttribute("nums",megasena);
+    }
+    
+    
+    }else if(request.getParameter("logout")!=null){
+    nomes_lista = (ArrayList)application.getAttribute("online");
+    for(int i= 0; i<nomes_lista.size();i++){
+    if(nomes_lista.get(i).equals(session.getAttribute("user"))){
+    nomes_lista.remove(i);
+    application.setAttribute("online", nomes_lista);
+    }
+    
+    }
+    session.removeAttribute("user");
+    session.removeAttribute("nums");
+    }
+    
+    nomes_lista = (ArrayList) application.getAttribute("online");
+    for( String i : nomes_lista){
+    if(!ant_dupe.contains(i)){
+    ant_dupe.add(i);}
+    }
+    application.setAttribute("online",ant_dupe);
+    nomes_lista = (ArrayList) application.getAttribute("online");
+    application.setAttribute("online", nomes_lista);
+ 
+    megasena = (ArrayList) session.getAttribute("nums");
+    String username= (String)session.getAttribute("user");
+%>
+ <h2>Renan Miguel Pascon |
+    <a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> |
+    <a href="<%=request.getContextPath()%>/renan.jsp">About Me</a> |
+    <a href="<%=request.getContextPath()%>/renan-dica-megasena.jsp">Loteria</a> </h2>
+   <%if(username==null){%>
+<form method="post">
+    <input type="text" name="usuario" required>
+    <input type="submit" name="login" value="Login">
+</form>
+<%}else{%>
+<form method="post">
+    Logado como <%=username%>
+    <input type="submit" name="logout" value="Logout">
+</form>
+    <%}%>
+<hr/>

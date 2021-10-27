@@ -24,6 +24,7 @@
         <title>Horarios</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
         <h1>Classe Horario</h1>
         <h3>Horario padrão da classe</h3>
         <div><%=padrao.getTime()%></div>

@@ -2,5 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <h1>Renan Miguel Pascon |
 <a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> |
-<a href="<%=request.getContextPath()%>/horario.jsp">Horarios</a></h1>
+<a href="<%=request.getContextPath()%>/horario.jsp">Horarios</a> |
+<a href="<%=request.getContextPath()%>/data.jsp">Datas</a> |
+<a href="<%=request.getContextPath()%>/contatos.jsp">Contatos</a></h1>
 <hr/>

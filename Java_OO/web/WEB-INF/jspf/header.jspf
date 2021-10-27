@@ -1,0 +1,6 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<h1>Renan Miguel Pascon |
+<a href="<%=request.getContextPath()%>/index.jsp">Inicio</a> |
+<a href="<%=request.getContextPath()%>/horario.jsp">Horarios</a></h1>
+<hr/>

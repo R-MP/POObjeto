@@ -1,0 +1,31 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+  if(request.getParameter("login")!=null){
+    String user = request.getParameter("user");
+    session.setAttribute("user", user);
+    
+    }else if(request.getParameter("logout")!=null){
+    session.removeAttribute("user");
+    
+    }  
+
+
+
+
+  String user = (String) session.getAttribute("user");
+%>
+
+<h1>Renan Miguel Pascon</h1>
+<%if(user==null){%>
+<form>
+    <input type='text' name='user' required> 
+    <input type='submit' name='login' value='Entrar'> 
+</form>
+<%}else{%>
+<form>
+    Logado como <%=user%>
+    <input type='submit' name='logout' value='Sair'> 
+</form>
+<%}%>
+<hr/>

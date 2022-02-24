@@ -30,10 +30,17 @@ public class ProdListener implements ServletContextListener{
              
              Connection con = getConnection();
              Statement stmt = con.createStatement();
+             //stmt.execute("drop table prod");
              stmt.execute("create table if not exists prod("
                      + "prodId int primary key,"
                      + "prodNm varchar(255),"
-                     + "prodQnt int"
+                     + "prodProv varchar(255),"
+                     + "prodMt varchar(255),"
+                     + "prodSzT varchar(255),"
+                     + "prodSzN varchar(255),"
+                     + "prodVlAt varchar(255),"
+                     + "prodVlMc varchar(255),"
+                     + "prodQnt varchar(255)"
                      + ");");
              stmt.close();
              con.close();

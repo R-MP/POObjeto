@@ -22,17 +22,24 @@ public class Prod {
         while(rs.next()){
             prodList.add(rs.getString("prodId"));
             prodList.add(rs.getString("prodNm"));
+            prodList.add(rs.getString("prodProv"));
+            prodList.add(rs.getString("prodMt"));
+            prodList.add(rs.getString("prodSzT"));
+            prodList.add(rs.getString("prodSzN"));
+            prodList.add(rs.getString("prodVlAt"));
+            prodList.add(rs.getString("prodVlMc"));
             prodList.add(rs.getString("prodQnt"));}
+            
         
         rs.close();
         stmt.close();
         con.close();
         return prodList;
     }
-    public static void addProd(String prodId, String prodNm, String prodQnt) throws Exception{
+    public static void addProd(String prodId, String prodNm, String prodProv, String prodMt, String prodSzT, String prodSzN,  String prodVlAt, String prodVlMc, String prodQnt) throws Exception{
     Connection con = ProdListener.getConnection();
     Statement stmt = con.createStatement();
-    stmt.execute("insert into prod values('"+prodId+"','"+prodNm+"','"+prodQnt+"')");
+    stmt.execute("insert into prod values('"+prodId+"','"+prodNm+"','"+prodProv+"','"+prodMt+"','"+prodSzT+"','"+prodSzN+"','"+prodVlAt+"','"+prodVlMc+"','"+prodQnt+"')");
     stmt.close();
     con.close();
     }
